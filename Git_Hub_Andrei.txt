@@ -1,0 +1,1 @@
+https://github.com/andreidavid8152/BlazorSeverAPI/blob/master/Pages/Index.razor

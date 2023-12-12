@@ -1,0 +1,69 @@
+﻿@page "/"
+@using Jags
+@inject HttpClient Http
+
+<form >
+    <br />
+    <div>
+        <h1 class="ali">BIENVENIDO A LA AMT</h1>
+    </div>
+    <br />
+    <div>
+        <div>
+            <label>
+                USUARIO:
+            </label>
+            <input class="form-control"  />
+        </div>
+        <br />
+        <div>
+            <label>
+                Contraseña:
+            </label>
+            <input class="form-control"  type="password" />
+
+        </div>
+        <br />
+        <div>
+            <select>
+                @if (datos != null)
+                {
+
+                    @foreach (var item in datos)
+                    {
+                        <option value="@item.Ruc">
+                            @item.NombreEmisor
+                            @item.Codigo
+
+                        </option>
+
+                    }
+                }
+            </select>
+        </div>
+        <br />
+        <div>
+            <button class="btn btn-primary"> ACCEDER </button>
+        </div>
+
+    </div>
+</form>
+
+
+
+
+
+@code {
+    private List<Emisor> datos;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        datos = await Http.GetFromJsonAsync<List<Emisor>>("Varios/GetEmisor");
+       
+    }
+
+    
+   
+
+}
+
